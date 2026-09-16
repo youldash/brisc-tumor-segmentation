@@ -1,0 +1,13 @@
+# Variant B — U-Net with an ImageNet-pretrained ResNet34 encoder (transfer learning)
+run_name: unet_resnet34
+model:
+  name: smp_unet
+  encoder_name: resnet34
+  encoder_weights: imagenet
+train:
+  epochs: 40
+  batch_size: 8
+  lr: 3.0e-4
+  encoder_lr_mult: 0.3  # fine-tune the pretrained encoder more gently than the decoder
+  warmup_epochs: 1
+  patience: 8

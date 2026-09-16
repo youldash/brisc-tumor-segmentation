@@ -1,0 +1,11 @@
+# Variant A — classic U-Net trained from scratch (baseline, ~7.8 M params)
+run_name: unet_scratch
+model:
+  name: unet_scratch
+  base_channels: 32
+train:
+  epochs: 50
+  batch_size: 8
+  lr: 1.0e-3          # from-scratch models tolerate a higher LR
+  warmup_epochs: 1
+  patience: 10

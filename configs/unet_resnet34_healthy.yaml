@@ -1,0 +1,19 @@
+# Improvement experiment — Variant B trained with healthy slices (empty masks) added.
+# The segmentation split contains tumour images only, so the baseline learns that every
+# slice has a tumour; adding ~900 healthy slices teaches it to predict "nothing".
+# Model selection uses Dice over tumour + healthy validation slices (empty/empty = 1).
+run_name: unet_resnet34_healthy
+data:
+  include_healthy: true
+  healthy_val_fraction: 0.15
+model:
+  name: smp_unet
+  encoder_name: resnet34
+  encoder_weights: imagenet
+train:
+  epochs: 40
+  batch_size: 8
+  lr: 3.0e-4
+  encoder_lr_mult: 0.3
+  warmup_epochs: 1
+  patience: 8

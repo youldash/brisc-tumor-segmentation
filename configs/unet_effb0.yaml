@@ -1,0 +1,14 @@
+# Variant C — lightweight U-Net with a pretrained EfficientNet-B0 encoder (via timm);
+# targeted at fast inference / deployment
+run_name: unet_effb0
+model:
+  name: smp_unet
+  encoder_name: tu-efficientnet_b0
+  encoder_weights: imagenet
+train:
+  epochs: 40
+  batch_size: 8
+  lr: 5.0e-4
+  encoder_lr_mult: 0.3
+  warmup_epochs: 1
+  patience: 8
