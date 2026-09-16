@@ -100,9 +100,10 @@ def plot_breakdown(metrics: dict, path: Path) -> None:
         ax.bar_label(b2, fmt="%.3f", fontsize=8)
         ax.set_xticks(x, [f"{g}\n(n={groups[g]['n']})" for g in names])
         ax.set_ylim(0.5, 1.02); ax.set_title(title); ax.grid(axis="y", alpha=0.3)
-    axes[0].legend(loc="lower left")
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper right", ncol=2, frameon=False)
     fig.suptitle("Test-set Dice of U-Net + ResNet34 (860 slices, native resolution)")
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
